@@ -1,31 +1,37 @@
 const mongoose = require('mongoose');
 const User = require("../models/user.models").User;
-const objSchema = new mongoose.Schema({
-    nameUser:{
-        type:Number,
-        require:true
-    },
-    date:{
-        type:Date,
-        require:true 
-    },
-    nameObj:{
-        type: String,
-        require:true
-    },
-    status:{
-        type:Boolean,
+const Ceiit = require("../models/ceiit.models").Ceiit;
+
+const loanSchema = new mongoose.Schema({
+    nameUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         require: true
     },
-    linkOpenLoan:{
-        type:String
+    date: {
+        type: Date,
+        default: Date.now,
+        require: true
     },
-    linkCloseLoan:{
-        type:String
+    nameObj: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Ceiit',
+        require: true
+    },
+    status: {
+        type: Boolean,
+        default: true, // Se establece en true por defecto
+        require: true
+    },
+    linkOpenLoan: {
+        type: String
+    },
+    linkCloseLoan: {
+        type: String
     }
 });
 
-const Loan =  mongoose.model('Loan', objSchema);
+const Loan = mongoose.model('Loan', loanSchema);
 
 module.exports = {
     Loan

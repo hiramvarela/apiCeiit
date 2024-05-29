@@ -6,11 +6,12 @@ const objSchema = new mongoose.Schema({
         require: true
     },
     Lugar: {
-        type: Number,
+        type: String,
         require: true
     },
     isAvailable:{
         type : Boolean,
+        default: true,
         require: true 
     },    
 }, {collection:'ceiit'});

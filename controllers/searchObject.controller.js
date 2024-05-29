@@ -5,13 +5,11 @@ const Loan = require("../models/loan.models.js").Loan;
 async function searchObj(req, res) {
     const id = req.body.id;
 
-    // Verificar si se proporcionó un _id
     if (!id) {
         return res.status(400).send({ error: 'Se requiere un _id para la búsqueda.' });
     }
 
     try {
-        // Realizar la búsqueda por _id
         const search = await Ceiit.findById(id);
         if (!search) {
             return res.status(404).send({ error: 'Objeto no encontrado.' });
